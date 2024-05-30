@@ -16,6 +16,7 @@
             justify-content: center;
             align-items: center;
             cursor: pointer; /* Indicate that the user can click */
+            flex-direction: column; /* Stack elements vertically */
         }
         .fullscreen-gif {
             width: 100%;
@@ -28,11 +29,22 @@
             height: 200px; /* Adjust size as needed */
             object-fit: cover;
         }
+        .comingsoon-gif {
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+            object-fit: cover;
+            display: none; /* Hide GIF initially */
+            position: absolute; /* Center it over the other GIFs */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 <body>
     <img src="click.webp" alt="Tap Here" class="tap-gif" id="tap-gif">
     <img src="test.gif" alt="swag" class="fullscreen-gif" id="gif">
+    <img src="comingsoon.gif" alt="Coming Soon" class="comingsoon-gif" id="comingsoon-gif">
     <audio id="background-audio" loop>
         <source src="audio.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -42,11 +54,13 @@
             const audio = document.getElementById('background-audio');
             const gif = document.getElementById('gif');
             const tapGif = document.getElementById('tap-gif');
+            const comingSoonGif = document.getElementById('comingsoon-gif');
             const playMedia = () => {
                 audio.play().catch(error => {
                     console.log('Audio play was prevented:', error);
                 });
                 gif.style.display = 'block'; // Show test GIF
+                comingSoonGif.style.display = 'block'; // Show coming soon GIF
                 tapGif.style.display = 'none'; // Hide tap GIF
                 document.body.style.backgroundColor = 'transparent'; // Remove black background
             };
