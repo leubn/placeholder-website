@@ -16,7 +16,6 @@
             justify-content: center;
             align-items: center;
             cursor: pointer; /* Indicate that the user can click */
-            flex-direction: column; /* Stack elements vertically */
         }
         .fullscreen-gif {
             width: 100%;
@@ -29,20 +28,11 @@
             height: 200px; /* Adjust size as needed */
             object-fit: cover;
         }
-        .comingsoon-gif {
-            width: 100px; /* Adjust size as needed */
-            height: 100px; /* Adjust size as needed */
-            object-fit: cover;
-            display: none; /* Hide GIF initially */
-            position: absolute; /* Center it over the other GIFs */
-            top: 20%; /* Adjust top position as needed */
-        }
     </style>
 </head>
 <body>
     <img src="click.webp" alt="Tap Here" class="tap-gif" id="tap-gif">
     <img src="test.gif" alt="swag" class="fullscreen-gif" id="gif">
-    <img src="comingsoon.gif" alt="Coming Soon" class="comingsoon-gif" id="comingsoon-gif">
     <audio id="background-audio" loop>
         <source src="audio.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -51,4 +41,34 @@
         document.addEventListener('DOMContentLoaded', function() {
             const audio = document.getElementById('background-audio');
             const gif = document.getElementById('gif');
-            const tapGif 
+            const tapGif = document.getElementById('tap-gif');
+            const playMedia = () => {
+                audio.play().catch(error => {
+                    console.log('Audio play was prevented:', error);
+                });
+                gif.style.display = 'block'; // Show test GIF
+                tapGif.style.display = 'none'; // Hide tap GIF
+                document.body.style.backgroundColor = 'transparent'; // Remove black background
+            };
+
+            const userInteracted = () => {
+                playMedia();
+                removeEventListeners(); // Remove event listeners after first interaction
+            };
+
+            const removeEventListeners = () => {
+                document.body.removeEventListener('click', userInteracted);
+                document.body.removeEventListener('scroll', userInteracted);
+                document.body.removeEventListener('touchstart', userInteracted);
+                document.body.removeEventListener('keydown', userInteracted);
+            };
+
+            // Add event listeners for various types of interactions
+            document.body.addEventListener('click', userInteracted);
+            document.body.addEventListener('scroll', userInteracted);
+            document.body.addEventListener('touchstart', userInteracted);
+            document.body.addEventListener('keydown', userInteracted);
+        });
+    </script>
+</body>
+</html>
