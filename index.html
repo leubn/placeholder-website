@@ -20,10 +20,26 @@
     </style>
 </head>
 <body>
-    <img src="test.gif" alt="louis bangit" class="fullscreen-gif">
-    <audio autoplay loop>
+    <img src="test.gif" alt="Louis Bangit" class="fullscreen-gif">
+    <audio id="background-audio" loop>
         <source src="audio.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('background-audio');
+            const playAudio = () => {
+                audio.play().catch(error => {
+                    console.log('Audio play was prevented:', error);
+                });
+            };
+            
+            // Try to play audio on page load
+            playAudio();
+
+            // Play audio on user interaction
+            document.body.addEventListener('click', playAudio);
+        });
+    </script>
 </body>
 </html>
