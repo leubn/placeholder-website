@@ -28,11 +28,17 @@
             height: 200px; /* Adjust size as needed */
             object-fit: cover;
         }
+        @media (min-width: 768px) {
+            .fullscreen-gif {
+                position: relative;
+                top: -100px; /* Adjust the value as needed to move the GIF up */
+            }
+        }
     </style>
 </head>
 <body>
     <img src="click.webp" alt="Tap Here" class="tap-gif" id="tap-gif">
-    <img src="test.gif" alt="Louis Bangit" class="fullscreen-gif" id="gif">
+    <img src="test.gif" alt="swag" class="fullscreen-gif" id="gif">
     <audio id="background-audio" loop>
         <source src="audio.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
