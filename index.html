@@ -12,10 +12,10 @@
             height: 100%;
             overflow: hidden;
             background-color: black; /* Initial black screen */
-            cursor: pointer; /* Indicate that the user can interact */
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer; /* Indicate that the user can click */
         }
         .fullscreen-gif {
             width: 100%;
@@ -23,9 +23,15 @@
             object-fit: cover;
             display: none; /* Hide GIF initially */
         }
+        .tap-gif {
+            width: 200px; /* Adjust size as needed */
+            height: 200px; /* Adjust size as needed */
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
+    <img src="tap.gif" alt="Tap Here" class="tap-gif" id="tap-gif">
     <img src="test.gif" alt="Louis Bangit" class="fullscreen-gif" id="gif">
     <audio id="background-audio" loop>
         <source src="audio.mp3" type="audio/mpeg">
@@ -35,11 +41,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             const audio = document.getElementById('background-audio');
             const gif = document.getElementById('gif');
+            const tapGif = document.getElementById('tap-gif');
             const playMedia = () => {
                 audio.play().catch(error => {
                     console.log('Audio play was prevented:', error);
                 });
-                gif.style.display = 'block'; // Show GIF
+                gif.style.display = 'block'; // Show test GIF
+                tapGif.style.display = 'none'; // Hide tap GIF
                 document.body.style.backgroundColor = 'transparent'; // Remove black background
             };
 
